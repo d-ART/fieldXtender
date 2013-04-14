@@ -155,7 +155,15 @@ $GLOBALS[\'TL_DCA\'][\''.$resultModules->module.'\'][\'palettes\'][\'default\'] 
 					$file_content_dca .= $fieldAdd;
 					
 					// Write file DCA
-					File::putContent($file_path_dca.$resultModules->module.'.php', $file_content_dca);
+					if(class_exists('File::putContent')){
+						File::putContent($file_path_dca.$resultModules->module.'.php', $file_content_dca);
+					}else{
+						$file_path_dca1 = $_SERVER['DOCUMENT_ROOT'].'/'.$file_path_dca.$resultModules->module.'.php';
+
+						$f = fopen($file_path_dca1,'w');
+						fwrite($f,$file_content_dca,strlen($file_content_dca));
+						fclose($f);
+					}
 					
 					// Languages connect Contents
 					$file_lang_en = '';
@@ -168,8 +176,22 @@ $GLOBALS[\'TL_DCA\'][\''.$resultModules->module.'\'][\'palettes\'][\'default\'] 
 					
 					
 					// Write file languages
-					File::putContent($file_path_lang_en.$resultModules->module.'.php', $file_lang_en);
-					File::putContent($file_path_lang_de.$resultModules->module.'.php', $file_lang_de);
+					if(class_exists('File::putContent')){
+						File::putContent($file_path_lang_en.$resultModules->module.'.php', $file_lang_en);
+						File::putContent($file_path_lang_de.$resultModules->module.'.php', $file_lang_de);
+					}else{
+						$file_path_lang_en1 = $_SERVER['DOCUMENT_ROOT'].'/'.$file_path_lang_en.$resultModules->module.'.php';
+
+						$f = fopen($file_path_lang_en1,'w');
+						fwrite($f,$file_lang_en,strlen($file_lang_en));
+						fclose($f);
+						
+						$file_path_lang_de1 = $_SERVER['DOCUMENT_ROOT'].'/'.$file_path_lang_de.$resultModules->module.'.php';
+						
+						$f = fopen($file_path_lang_de1,'w');
+						fwrite($f,$file_lang_de,strlen($file_lang_de));
+						fclose($f);
+					}
 					
 					$updated_files .= $file_path_dca.$resultModules->module.'.php<br />'.$file_path_lang_en.$resultModules->module.'.php<br />'.$file_path_lang_de.$resultModules->module.'.php<br />';
 				
