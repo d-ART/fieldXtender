@@ -38,14 +38,15 @@ class fieldXtender_fields extends \Backend
 	public function generateAlias($varValue, DataContainer $dc)
 	{
 		$autoAlias = false;
-	
+		echo "TEST";
 		// Generate alias if there is none
 		if ($varValue == '')
 		{
 			$autoAlias = true;
 			$varValue = standardize(String::restoreBasicEntities($dc->activeRecord->title));
+
 		}
-	
+		$varValue = str_replace(array('-','.'),'_',$varValue);
 		$objAlias = $this->Database->prepare("SELECT id FROM tl_fieldXtender_fields WHERE alias=?")
 		->execute($varValue);
 	

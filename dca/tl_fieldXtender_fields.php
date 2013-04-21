@@ -201,7 +201,7 @@ $GLOBALS['TL_DCA']['tl_fieldXtender_fields'] = array
 												'w50 m12' => &$GLOBALS['TL_LANG']['tl_fieldXtender_fields']['class']['w50m12'],
 						
 											),
-				'eval'                    => array('helpwizard' => true, 'mandatory'=>true, 'maxlength'=>50, 'tl_class'=>'w50'),
+				'eval'                    => array('includeBlankOption' => true, 'helpwizard' => true, 'mandatory'=>true, 'maxlength'=>50, 'tl_class'=>'w50'),
 				'explanation'			  => 'class_types',
 				'sql'                     => "varchar(255) NOT NULL default ''"
 		),
