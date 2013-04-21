@@ -58,7 +58,7 @@ class fieldXtender_fields extends \Backend
 		// Add ID to alias
 		if ($objAlias->numRows && $autoAlias)
 		{
-			$varValue .= '-' . $dc->id;
+			$varValue .= '_' . $dc->id;
 		}
 	
 		return $varValue;
